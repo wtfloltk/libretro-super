@@ -23,7 +23,7 @@ jobs:
         ./libretro-build-wiiu.sh
     
     - name: Cache Source and all
-      uses: actions/cache@v4
+      uses: actions/cache@v3
       with:
         path: |
             .
@@ -48,7 +48,7 @@ jobs:
         ./libretro-build-ctr.sh
     
     - name: Cache Source and all
-      uses: actions/cache@v4
+      uses: actions/cache@v3
       with:
         path: |
             .
