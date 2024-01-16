@@ -19,7 +19,7 @@ jobs:
     - name: make
       run: |
         chmod +x *.sh
-        ./libretro-fetch.sh wiiu
+        ./libretro-fetch.sh 
         ./libretro-build-wiiu.sh
         
     - name: Upload artifacts
@@ -38,7 +38,7 @@ jobs:
     - name: make
       run: |
         chmod +x *.sh
-        ./libretro-fetch.sh ctr
+        ./libretro-fetch.sh
         ./libretro-build-ctr.sh
         
     - name: Upload artifacts
