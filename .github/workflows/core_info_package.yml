@@ -10,7 +10,7 @@ on:
     if: github.actor == github.event.repository.owner.login
 
 jobs:
-  make_arm:
+  make_arm_3ds:
     runs-on: ubuntu-latest
     container: devkitpro/devkitarm:latest
   
@@ -19,4 +19,5 @@ jobs:
     - name: make
       run: |
         chmod +x *.sh
+        ./libretro-fetch.sh
         ./libretro-build-ctr.sh
