@@ -1,3 +1,4 @@
+dolphin libretro-dolphin https://github.com/libretro/dolphin.git YES GENERIC Makefile .
 2048 libretro-2048 https://github.com/libretro/libretro-2048.git master YES GENERIC Makefile.libretro .
 opera libretro-opera https://github.com/libretro/opera-libretro.git master YES GENERIC Makefile .
 81 libretro-81 https://github.com/libretro/81-libretro.git master YES GENERIC Makefile .
