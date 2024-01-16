@@ -21,6 +21,10 @@ jobs:
         chmod +x *.sh
         ./libretro-fetch.sh 
         ./libretro-build-wiiu.sh
+        cp -r dist/wiiu/* retroarch
+        cd retroarch
+        for i in *.a; do make -f Makefile.wiiu; done;
+        cp *.rpx ../dist/wiiu
     
     - name: Cache Source and all
       uses: actions/cache@v3
@@ -32,8 +36,8 @@ jobs:
       if: ${{ success() }}
       uses: actions/upload-artifact@v4
       with:
-        name: source-wiiu
-        path: build
+        name: dist-wiiu
+        path: dist/wiiu
         
   make_arm_3ds:
     runs-on: ubuntu-latest
@@ -46,16 +50,16 @@ jobs:
         chmod +x *.sh
         ./libretro-fetch.sh
         ./libretro-build-ctr.sh
-    
-    - name: Cache Source and all
-      uses: actions/cache@v3
-      with:
-        path: |
-            .
+        cp -r dist/ctr/* retroarch
+        cd retroarch
+        for i in *.a; do make -f Makefile.ctr; done;
+        cp *.cia ../dist/ctr/ctr
+        for i in *.a; do make -f Makefile.ctr.salamander; done;
+        cp *.cia ../dist/ctr/salamander
       
     - name: Upload artifacts
       if: ${{ success() }}
       uses: actions/upload-artifact@v4
       with:
-        name: source-3ds
-        path: build
+        name: dist-3ds
+        path: dist/ctr
