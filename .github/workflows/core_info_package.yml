@@ -10,18 +10,13 @@ on:
     if: github.actor == github.event.repository.owner.login
 
 jobs:
-  Assets:
-    name: Bundle Core Info Files
+  make_arm:
     runs-on: ubuntu-latest
-
+    container: devkitpro/devkitarm:latest
+  
     steps:
-    - uses: actions/checkout@v2
-    - run: cd dist/info && 7z a -mx=9 info.7z *
-    - name: Upload core info bundle
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: dist/info/info.7z
-        tag: Latest
-        asset_name: info.7z
-        overwrite: true
+    - uses: action/checkout@v4
+    - name: make
+      run: make
+      
+   
