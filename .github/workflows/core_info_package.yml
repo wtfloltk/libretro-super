@@ -10,6 +10,25 @@ on:
     if: github.actor == github.event.repository.owner.login
 
 jobs:
+  make_ppc_wiiu:
+    runs-on: ubuntu-latest
+    container: devkitpro/devkitppc:latest
+  
+    steps:
+    - uses: actions/checkout@v4
+    - name: make
+      run: |
+        chmod +x *.sh
+        ./libretro-fetch.sh wiiu
+        ./libretro-build-wiiu.sh
+        
+    - name: Upload artifacts
+      if: ${{ success() }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: source-wiiu
+        path: .
+        
   make_arm_3ds:
     runs-on: ubuntu-latest
     container: devkitpro/devkitarm:latest
@@ -19,12 +38,12 @@ jobs:
     - name: make
       run: |
         chmod +x *.sh
-        ./libretro-fetch.sh
+        ./libretro-fetch.sh ctr
         ./libretro-build-ctr.sh
         
     - name: Upload artifacts
       if: ${{ success() }}
       uses: actions/upload-artifact@v4
       with:
-        name: source
+        name: source-3ds
         path: .
